@@ -1,6 +1,7 @@
+
 NAME = minishell
 
-#CFLAGS #= -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror
 
 src = new_str.c add_cmd.c add_redir.c herdocs.c create_cmd_parce.c \
 		shell.c get_symbole.c backslash.c t_word.c\
@@ -37,7 +38,7 @@ all : $(NAME)
 
 $(NAME): $(OBJ)
 	@make -sC libft
-	@gcc $(CFLAGS) $^ $(libft) -lreadline -lcurses -o $(NAME)
+	@gcc $(CFLAGS) $^ $(libft) -o $@ -lreadline $(LDFLAGS) -lncurses
 	@echo "\033[1;32m                        _ _          _ \033[0m"
 	@echo "\033[1;32m                       (_) |        | |\033[0m"
 	@echo "\033[1;32m  ____ ___  ____  ____  _| | ____ _ | |\033[0m"
@@ -59,5 +60,3 @@ fclean: clean
 	@echo "\033[1;32m##########CLEANED SUCCESSFULY##########\033[0m"
 
 re: fclean all
-
-.PHONY: all clean fclean re
